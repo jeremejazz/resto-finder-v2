@@ -1,0 +1,20 @@
+meta {
+  name: Search
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/v1/search?apiKey=jeremejazz
+  body: none
+  auth: inherit
+}
+
+params:query {
+  apiKey: jeremejazz
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
