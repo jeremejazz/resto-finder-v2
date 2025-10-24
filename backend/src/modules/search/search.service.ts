@@ -4,8 +4,13 @@ export const searchGoogle = async (textQuery: String) => {
   const fieldMask = [
     "places.displayName",
     "places.formattedAddress",
+    "places.shortFormattedAddress",
     "places.priceLevel",
     "places.googleMapsLinks",
+    "places.businessStatus",
+    "places.primaryType",
+    "places.types"
+    
   ];
 
   const options = {
@@ -18,6 +23,8 @@ export const searchGoogle = async (textQuery: String) => {
     },
     body: JSON.stringify({
       textQuery,
+      includedType: "restaurant",
+      strictTypeFiltering: false
     }),
   };
 
