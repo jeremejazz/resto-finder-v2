@@ -26,7 +26,7 @@ const SearchResults = () => {
 };
 
 
-const SearchItem = ({ title, description, price, directionsUrl, mapsUrl, key }) => {
+const SearchItem = ({ title, description, price, directionsUrl, mapsUrl }) => {
 
   const handleDirectionsLink = () => {
     window.open(directionsUrl, "_blank")?.focus();
@@ -41,16 +41,16 @@ const SearchItem = ({ title, description, price, directionsUrl, mapsUrl, key }) 
           <Card.Root
           width={{ base: "100%", md: "320px" }}
           variant={"outline"}
-          key={key}
+     
         >
           <Card.Body gap="2">
             <Card.Title mb="2">{title}</Card.Title>
             <Card.Description>
-              {description}
+              {description}         
+            </Card.Description>
             <HStack mt="4">
               <Badge>{price}</Badge>
-            </HStack>              
-            </Card.Description>
+            </HStack>                 
           </Card.Body>
           <Card.Footer justifyContent="flex-end">
             <Tooltip content="Get Directions">

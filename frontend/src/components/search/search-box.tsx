@@ -43,8 +43,8 @@ const SearchBox = () => {
           </InputGroup>
 
           <NativeSelect.Root size="md" width="200px">
-            <NativeSelect.Field ref={typeRef} placeholder="Select option">
-              <option value="restaurant" selected>Restaurant</option>
+            <NativeSelect.Field ref={typeRef} defaultValue="restaurant">
+              <option value="restaurant">Restaurant</option>
               <option value="bakery">Bakery</option>
               <option value="coffee_shop">Coffee Shop</option>
             </NativeSelect.Field>
