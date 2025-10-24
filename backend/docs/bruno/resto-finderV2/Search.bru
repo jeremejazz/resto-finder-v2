@@ -5,14 +5,15 @@ meta {
 }
 
 get {
-  url: {{base_url}}/api/v1/search?apiKey=jeremejazz&text=most expensive restaurants near sucat paranaque
+  url: {{base_url}}/api/v1/search?apiKey=jeremejazz&text=starbucks in san antonio, paranaque city
   body: none
   auth: inherit
 }
 
 params:query {
   apiKey: jeremejazz
-  text: most expensive restaurants near sucat paranaque
+  text: starbucks in san antonio, paranaque city
+  ~text: starbucks in san antonio, paranaque city
 }
 
 settings {
