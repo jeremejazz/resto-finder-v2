@@ -17,7 +17,7 @@ const Search = () => {
             <SearchBox />
         </Box>
         <Container>
-          <Stack gap="4" direction="row" wrap="wrap">
+          <Stack gap="3" direction="row" wrap="wrap">
             <SearchResults />
           </Stack>
         </Container>

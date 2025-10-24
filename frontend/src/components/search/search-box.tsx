@@ -14,14 +14,14 @@ const SearchBox = () => {
   };
 
   const randomPlaceholder = _.sample([
-    "Cheap ramen near Cebu City that's open now",
+    "Cheap ramen near Cebu City",
     'Best sushi in Tokyo',
     'Pizza places open late in New York',
     'Affordable mediterranean restaurant near Ayala Makati'
   ]);
 
   return (
-    <Stack gap={6} width={{ base: '90%', md: '500px' }}>
+    <Stack gap={6} width={{ base: '90%', md: '600px' }}>
       <Heading as="h1" textAlign="center" size="2xl">
         Find the perfect spot
       </Heading>
@@ -42,7 +42,7 @@ const SearchBox = () => {
             />
           </InputGroup>
 
-          <NativeSelect.Root size="md" width="200px">
+          <NativeSelect.Root size="md" width="200px"    >
             <NativeSelect.Field ref={typeRef} defaultValue="restaurant">
               <option value="restaurant">Restaurant</option>
               <option value="bakery">Bakery</option>
