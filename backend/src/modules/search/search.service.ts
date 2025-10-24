@@ -1,28 +1,29 @@
+export const searchGoogle = async (textQuery: String) => {
+  const url = process.env.GOOGLE_PLACES_API_URL || "";
 
+  const fieldMask = [
+    "places.displayName",
+    "places.formattedAddress",
+    "places.priceLevel",
+    "places.googleMapsLinks",
+  ];
 
-export const searchGoogle = async (textQuery: String) =>{
-
-    const url = process.env.GOOGLE_PLACES_API_URL || "";
   const options = {
     method: "POST",
     headers: {
       accept: "application/json",
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       "X-Goog-Api-Key": process.env.GOOGLE_API_KEY || "",
-      "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.priceLevel"
+      "X-Goog-FieldMask": fieldMask.join(","),
     },
     body: JSON.stringify({
-        textQuery
-    })
+      textQuery,
+    }),
   };
 
- 
-    const response = await fetch(url, options);
+  const response = await fetch(url, options);
 
-    const data = response.json();
+  const data = response.json();
 
-
-    return data;
-
-}
-
+  return data;
+};
