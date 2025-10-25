@@ -3,14 +3,25 @@ import { VscSparkleFilled } from 'react-icons/vsc';
 import _ from 'lodash';
 import { useRef } from 'react';
 
-const SearchBox = () => {
+
+export interface SearchBoxProps {
+  onSearch?: (query: string,type: string) => void;
+}
+
+const SearchBox = ({ onSearch }: SearchBoxProps) => {
 
   const searchRef = useRef<HTMLInputElement>(null);
   const typeRef = useRef<HTMLSelectElement>(null);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+    
+    const query = searchRef.current?.value || '';
+    const type = typeRef.current?.value || 'restaurant';
+
+    if (onSearch) {
+      onSearch(query, type);
+    }
   };
 
   const randomPlaceholder = _.sample([

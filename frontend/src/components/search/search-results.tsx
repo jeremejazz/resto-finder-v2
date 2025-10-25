@@ -2,24 +2,16 @@ import { Badge, Card, For, HStack, IconButton } from "@chakra-ui/react";
 import { FaDirections, FaMapMarkedAlt } from "react-icons/fa";
 import { Tooltip } from "../ui/tooltip";
 
-const SearchResults = () => {
+
+const SearchResults = ({ results, isLoading, error, hasSearched }) => {
+
+ 
   return (
     <For
-      each={[
-        "subtle",
-        "outline",
-        "elevated",
-        "filled",
-        "ghost",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-      ]}
+      each={results}
     >
-      {(variant) => (
-         <SearchItem key={variant} title={'test'} description={'test'} price={'test'} directionsUrl={'https://example.com'} mapsUrl={'https://example.com'} />
+      {(result) => (
+         <SearchItem key={result.id} title={result.displayName.text} description={result.formattedAddress} price={result.priceLevel} directionsUrl={result.googleMapsLinks.directionsUri} mapsUrl={result.googleMapsLinks.placeUri} />
       )}
     </For>
   );
