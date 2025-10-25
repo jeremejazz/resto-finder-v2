@@ -1,4 +1,4 @@
-export const searchGoogle = async (textQuery: String) => {
+export const searchGoogle = async (textQuery: String, type: String) => {
   const url = process.env.GOOGLE_PLACES_API_URL || "";
 
   const fieldMask = [
@@ -24,7 +24,7 @@ export const searchGoogle = async (textQuery: String) => {
     },
     body: JSON.stringify({
       textQuery,
-      includedType: "restaurant",
+      includedType: type,
       strictTypeFiltering: false
     }),
   };

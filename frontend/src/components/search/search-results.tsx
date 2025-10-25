@@ -36,7 +36,7 @@ const SearchItem = ({ title, description, price, directionsUrl, mapsUrl }) => {
           <Card.Title mb="2">{title}</Card.Title>
           <Card.Description>{description}</Card.Description>
           <HStack mt="4">
-            { price ? <Badge>{price}</Badge> : null }
+            { price ? <Badge>Price: {price}</Badge> : null }
           </HStack>
         </Card.Body>
         <Card.Footer justifyContent="flex-end">
