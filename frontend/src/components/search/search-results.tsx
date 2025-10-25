@@ -1,15 +1,27 @@
-import { Badge, Card, For, HStack, IconButton } from "@chakra-ui/react";
+import { Badge, Box, Card, For, HStack, IconButton } from "@chakra-ui/react";
 import { FaDirections, FaMapMarkedAlt } from "react-icons/fa";
 import { Tooltip } from "../ui/tooltip";
 import { priceLevelToLabel } from "@/types/price-level";
 
-const SearchResults = ({ results, isLoading, error, hasSearched }) => {
+const SearchResults = ({ results, isLoading, error, hasSearched }: {
+  results: any[];
+  isLoading: boolean;
+  error: any;
+  hasSearched: boolean;
+}) => {
   return (
-    <For each={results}>
-      {(result) => (
-        <SearchItem
-          key={result.id}
-          title={result.displayName.text}
+    <>
+      {isLoading && <Box textAlign="center" width='100%'>Loading...</Box>}
+      {error && <Box textAlign="center" color="red.500" width='100%'>Error: {error}</Box>}
+      {!isLoading && !error && hasSearched && results.length === 0 && (
+        <Box textAlign="center" width='100%'>No results found.</Box>
+      )}
+      {!isLoading && !error && results.length > 0 && (
+      <For each={results}>
+        {(result) => (
+          <SearchItem
+            key={result.id}
+            title={result.displayName.text}
           description={result.formattedAddress}
           price={priceLevelToLabel(result.priceLevel)}
           directionsUrl={result.googleMapsLinks.directionsUri}
@@ -17,6 +29,8 @@ const SearchResults = ({ results, isLoading, error, hasSearched }) => {
         />
       )}
     </For>
+      )}
+    </>
   );
 };
 
