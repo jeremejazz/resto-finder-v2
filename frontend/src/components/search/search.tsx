@@ -8,14 +8,14 @@ import {
 
 import SearchResults from './search-results';
 import SearchBox from './search-box';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface Restaurant {
-  // Define your restaurant interface based on API response
+
   id: string;
   name: string;
   description: string;
-  // Add other properties as needed
+
 }
 
 const Search = () => {
@@ -25,10 +25,6 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  
-  useEffect(() => {
-    document.title = 'RestoFinder - Search';
-  }, []);
 
   const handleSearch = async (query: string, type: string) => {
     setSearchParams({ query, type });
@@ -37,9 +33,10 @@ const Search = () => {
 
     try {
       const API_KEY = import.meta.env.VITE_API_KEY;
-      // Replace with your actual API endpoint
-      const response = await fetch(`http://localhost:5000/api/v1/search?text=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}&apiKey=${API_KEY}`);
-      
+      const API_URL = import.meta.env.VITE_API_URL;
+ 
+      const response = await fetch(`${API_URL}/api/v1/search?text=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}&apiKey=${API_KEY}`);
+
       if (!response.ok) {
         throw new Error('Search failed');
       }

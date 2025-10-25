@@ -13,8 +13,8 @@ const search: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
       schema: {
         querystring: {
           type: "object",
-          properties: { text: { type: "string", minLength: 5 } },
-          required: ["text"],
+          properties: { text: { type: "string", minLength: 5 }, type: { type: "string", enum: ["restaurant", "bakery", "coffee_shop"] } },
+          required: ["text", "type"],
         },
       },
     },
