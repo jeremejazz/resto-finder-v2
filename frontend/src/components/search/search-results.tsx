@@ -34,7 +34,15 @@ const SearchResults = ({ results, isLoading, error, hasSearched }: {
   );
 };
 
-const SearchItem = ({ title, description, price, directionsUrl, mapsUrl }) => {
+interface SearchItemProps {
+  title: string;
+  description: string;
+  price: string | null;
+  directionsUrl: string;
+  mapsUrl: string;
+}
+
+const SearchItem = ({ title, description, price, directionsUrl, mapsUrl }: SearchItemProps) => {
   const handleDirectionsLink = () => {
     window.open(directionsUrl, "_blank")?.focus();
   };

@@ -8,14 +8,14 @@ import {
 
 import SearchResults from './search-results';
 import SearchBox from './search-box';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface Restaurant {
-  // Define your restaurant interface based on API response
+
   id: string;
   name: string;
   description: string;
-  // Add other properties as needed
+
 }
 
 const Search = () => {
@@ -25,10 +25,6 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  
-  useEffect(() => {
-    document.title = 'RestoFinder - Search';
-  }, []);
 
   const handleSearch = async (query: string, type: string) => {
     setSearchParams({ query, type });
