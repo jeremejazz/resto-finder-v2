@@ -5,16 +5,19 @@ meta {
 }
 
 get {
-  url: {{base_url}}/api/v1/search?apiKey=jeremejazz&text=cheap fast food restaurants in sm sucat&type=restaurant
+  url: {{base_url}}/api/v1/search?text=cheap fast food restaurants in sm sucat&type=restaurant
   body: none
   auth: inherit
 }
 
 params:query {
-  apiKey: jeremejazz
   text: cheap fast food restaurants in sm sucat
   type: restaurant
   ~text: coffee near amaia homes sucat
+}
+
+headers {
+  x-api-key: {{api_key}}
 }
 
 settings {
