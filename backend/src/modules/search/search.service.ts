@@ -2,6 +2,7 @@ export const searchGoogle = async (textQuery: String) => {
   const url = process.env.GOOGLE_PLACES_API_URL || "";
 
   const fieldMask = [
+    'places.id',
     "places.displayName",
     "places.formattedAddress",
     "places.shortFormattedAddress",
