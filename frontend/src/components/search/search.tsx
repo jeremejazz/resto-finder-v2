@@ -37,9 +37,10 @@ const Search = () => {
 
     try {
       const API_KEY = import.meta.env.VITE_API_KEY;
-      // Replace with your actual API endpoint
-      const response = await fetch(`http://localhost:5000/api/v1/search?text=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}&apiKey=${API_KEY}`);
-      
+      const API_URL = import.meta.env.VITE_API_URL;
+ 
+      const response = await fetch(`${API_URL}/api/v1/search?text=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}&apiKey=${API_KEY}`);
+
       if (!response.ok) {
         throw new Error('Search failed');
       }
