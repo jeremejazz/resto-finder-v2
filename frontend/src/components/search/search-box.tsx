@@ -39,7 +39,7 @@ const SearchBox = ({ onSearch }: SearchBoxProps) => {
       <form onSubmit={handleSearch}>
         <Flex>
           
-          <InputGroup startElement={<VscSparkleFilled />}>
+          <InputGroup startElement={<VscSparkleFilled color='silver' />}>
             <Input
               type="text"
               placeholder={randomPlaceholder}
