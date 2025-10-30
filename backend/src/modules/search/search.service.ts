@@ -3,15 +3,14 @@ export const searchGoogle = async (textQuery: String, type: String) => {
 
   const fieldMask = [
     'places.id',
+    "places.businessStatus",
     "places.displayName",
     "places.formattedAddress",
-    "places.shortFormattedAddress",
-    "places.priceLevel",
     "places.googleMapsLinks",
-    "places.businessStatus",
+    "places.priceLevel",
     "places.primaryType",
-    "places.types"
-    
+    "places.shortFormattedAddress",
+    "places.types",    
   ];
 
   const options = {
