@@ -10,6 +10,7 @@ import SearchResults from './search-results';
 import SearchBox from './search-box';
 import { useState } from 'react';
 
+
 interface Restaurant {
 
   id: string;
@@ -35,7 +36,14 @@ const Search = () => {
       const API_KEY = import.meta.env.VITE_API_KEY;
       const API_URL = import.meta.env.VITE_API_URL;
  
-      const response = await fetch(`${API_URL}/api/v1/search?text=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}&apiKey=${API_KEY}`);
+      const response = await fetch(
+        `${API_URL}/api/v1/search?text=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}`,
+        {
+          headers: {
+            'x-api-key': API_KEY,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Search failed');

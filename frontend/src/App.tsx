@@ -10,7 +10,6 @@ function App() {
     <>
       <Box>
         <Header />
-
         <Search />
       </Box>
     </>

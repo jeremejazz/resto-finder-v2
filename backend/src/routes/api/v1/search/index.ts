@@ -9,6 +9,12 @@ const search: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.get<{ Querystring: SearchQuery }>(
     "/",
     {
+      config: {
+        rateLimit: {
+          max: 10,
+          timeWindow: '1 minute'
+        }
+      },
       preHandler: [checkApiKey],
       schema: {
         querystring: {

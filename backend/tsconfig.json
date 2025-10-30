@@ -4,5 +4,5 @@
     "outDir": "dist",
     "sourceMap": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "test/modules/search/search.service.test.ts"]
 }

@@ -14,12 +14,18 @@ const app: FastifyPluginAsync<AppOptions> = async (
   fastify,
   opts
 ): Promise<void> => {
-  // Place here your custom code!
+
+
   fastify.register(cors, {
     origin: '*'
-  });
+  })
+
+  await fastify.register(import('@fastify/rate-limit'), {
+    global: false
+  })
 
 
+  
   // Do not touch the following lines
 
   // This loads all plugins defined in plugins
