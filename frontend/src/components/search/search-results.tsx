@@ -4,14 +4,21 @@ import {
   Card,
   For,
   HStack,
+  Icon,
   IconButton,
 } from "@chakra-ui/react";
-import { FaDirections, FaMapMarkedAlt, FaRegStar, FaStar } from "react-icons/fa";
+import {
+  FaDirections,
+  FaMapMarkedAlt,
+  FaMapPin,
+  FaRegStar,
+  FaStar,
+} from "react-icons/fa";
 import { Tooltip } from "../ui/tooltip";
 import { priceLevelToLabel } from "@/types/price-level";
 import { Alert } from "../ui/alert";
 import { useFavorites } from "@/contexts/FavoritesContext";
-
+import { FaCircleDollarToSlot } from "react-icons/fa6";
 
 const SearchResults = ({
   results,
@@ -24,7 +31,6 @@ const SearchResults = ({
   error: any;
   hasSearched: boolean;
 }) => {
-
   const { favoriteIds, toggleFavorite } = useFavorites();
 
   return (
@@ -34,11 +40,13 @@ const SearchResults = ({
           Loading...
         </Box>
       )}
-      {error && (
-        <Alert title="Error" description={error} status="error" />
-      )}
+      {error && <Alert title="Error" description={error} status="error" />}
       {!isLoading && !error && hasSearched && results.length === 0 && (
-        <Alert title="No Results" description="No results found." status="info" />
+        <Alert
+          title="No Results"
+          description="No results found."
+          status="info"
+        />
       )}
       {!isLoading && !error && results.length > 0 && (
         <For each={results}>
@@ -47,12 +55,13 @@ const SearchResults = ({
               key={result.id}
               id={result.id}
               title={result.displayName.text}
-              description={result.shortFormattedAddress}
+              address={result.shortFormattedAddress}
               price={priceLevelToLabel(result.priceLevel)}
               directionsUrl={result.googleMapsLinks.directionsUri}
               mapsUrl={result.googleMapsLinks.placeUri}
               isFavorite={favoriteIds.includes(result.id)}
               toggleFavorite={toggleFavorite}
+              primaryType={result.primaryTypeDisplayName.text}
             />
           )}
         </For>
@@ -62,30 +71,28 @@ const SearchResults = ({
 };
 
 interface SearchItemProps {
-  id: string,
+  id: string;
   title: string;
-  description: string;
+  address: string;
   price: string | null;
   directionsUrl: string;
   mapsUrl: string;
-  isFavorite: boolean,
-  toggleFavorite: Function
+  isFavorite: boolean;
+  toggleFavorite: Function;
+  primaryType: string;
 }
 
 const SearchItem = ({
   id,
   title,
-  description,
+  address,
   price,
   directionsUrl,
   mapsUrl,
   isFavorite,
-  toggleFavorite
-
+  toggleFavorite,
+  primaryType,
 }: SearchItemProps) => {
-
-
-  
   const handleDirectionsLink = () => {
     window.open(directionsUrl, "_blank")?.focus();
   };
@@ -99,15 +106,33 @@ const SearchItem = ({
       <Card.Root width={{ base: "100%", md: "320px" }} variant={"outline"}>
         <Card.Body gap="2">
           <Card.Title mb="2">{title}</Card.Title>
-          <Card.Description>{description}</Card.Description>
+          <Card.Description>
+            <Icon>
+              <FaMapPin />
+            </Icon>{" "}
+            {address}
+          </Card.Description>
 
-          <HStack mt="4">{price ? <Badge>Price: {price}</Badge> : null}</HStack>
+          <HStack mt="4">
+            {primaryType ? <Badge>{primaryType}</Badge> : null}
+            {price ? (
+              <Badge>
+                <Icon>
+                  <FaCircleDollarToSlot />
+                </Icon>{" "}
+                {price}
+              </Badge>
+            ) : null}
+          </HStack>
         </Card.Body>
         <Card.Footer justifyContent="flex-end">
-
           <Tooltip content="Add to Favorites">
-            <IconButton colorPalette="yellow" variant="ghost" onClick={() => toggleFavorite(id)}>
-              { isFavorite ? <FaStar /> : <FaRegStar /> }
+            <IconButton
+              colorPalette="yellow"
+              variant="ghost"
+              onClick={() => toggleFavorite(id)}
+            >
+              {isFavorite ? <FaStar /> : <FaRegStar />}
             </IconButton>
           </Tooltip>
 

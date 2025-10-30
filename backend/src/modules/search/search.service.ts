@@ -8,6 +8,7 @@ export const searchGoogle = async (textQuery: String, type: String) => {
     "places.formattedAddress",
     "places.googleMapsLinks",
     "places.priceLevel",
+    "places.primaryTypeDisplayName",
     "places.primaryType",
     "places.shortFormattedAddress",
     "places.types",    
