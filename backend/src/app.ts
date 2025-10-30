@@ -21,8 +21,7 @@ const app: FastifyPluginAsync<AppOptions> = async (
   })
 
   await fastify.register(import('@fastify/rate-limit'), {
-    max: 10,
-    timeWindow: '1 minute'
+    global: false
   })
 
 
