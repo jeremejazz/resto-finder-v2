@@ -10,6 +10,7 @@ import SearchResults from './search-results';
 import SearchBox from './search-box';
 import { useState } from 'react';
 
+
 interface Restaurant {
 
   id: string;

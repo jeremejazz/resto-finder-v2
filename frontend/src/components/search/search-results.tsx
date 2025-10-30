@@ -6,10 +6,12 @@ import {
   HStack,
   IconButton,
 } from "@chakra-ui/react";
-import { FaDirections, FaMapMarkedAlt } from "react-icons/fa";
+import { FaDirections, FaMapMarkedAlt, FaRegStar, FaStar } from "react-icons/fa";
 import { Tooltip } from "../ui/tooltip";
 import { priceLevelToLabel } from "@/types/price-level";
 import { Alert } from "../ui/alert";
+import { useFavorites } from "@/contexts/FavoritesContext";
+
 
 const SearchResults = ({
   results,
@@ -22,6 +24,9 @@ const SearchResults = ({
   error: any;
   hasSearched: boolean;
 }) => {
+
+  const { favoriteIds, toggleFavorite } = useFavorites();
+
   return (
     <>
       {isLoading && (
@@ -40,11 +45,14 @@ const SearchResults = ({
           {(result) => (
             <SearchItem
               key={result.id}
+              id={result.id}
               title={result.displayName.text}
               description={result.formattedAddress}
               price={priceLevelToLabel(result.priceLevel)}
               directionsUrl={result.googleMapsLinks.directionsUri}
               mapsUrl={result.googleMapsLinks.placeUri}
+              isFavorite={favoriteIds.includes(result.id)}
+              toggleFavorite={toggleFavorite}
             />
           )}
         </For>
@@ -54,20 +62,30 @@ const SearchResults = ({
 };
 
 interface SearchItemProps {
+  id: string,
   title: string;
   description: string;
   price: string | null;
   directionsUrl: string;
   mapsUrl: string;
+  isFavorite: boolean,
+  toggleFavorite: Function
 }
 
 const SearchItem = ({
+  id,
   title,
   description,
   price,
   directionsUrl,
   mapsUrl,
+  isFavorite,
+  toggleFavorite
+
 }: SearchItemProps) => {
+
+
+  
   const handleDirectionsLink = () => {
     window.open(directionsUrl, "_blank")?.focus();
   };
@@ -82,9 +100,17 @@ const SearchItem = ({
         <Card.Body gap="2">
           <Card.Title mb="2">{title}</Card.Title>
           <Card.Description>{description}</Card.Description>
+
           <HStack mt="4">{price ? <Badge>Price: {price}</Badge> : null}</HStack>
         </Card.Body>
         <Card.Footer justifyContent="flex-end">
+
+          <Tooltip content="Add to Favorites">
+            <IconButton colorPalette="yellow" variant="ghost" onClick={() => toggleFavorite(id)}>
+              { isFavorite ? <FaStar /> : <FaRegStar /> }
+            </IconButton>
+          </Tooltip>
+
           <Tooltip content="Get Directions">
             <IconButton colorPalette="bg" onClick={handleDirectionsLink}>
               <FaDirections />
