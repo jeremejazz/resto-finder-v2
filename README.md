@@ -1,5 +1,6 @@
 # Restaurant Finder V2
 
+![Landing Page](frontend/public/landing-page.png)
 
 ## About 
 
