@@ -9,6 +9,7 @@ import {
 import SearchResults from './search-results';
 import SearchBox from './search-box';
 import { useState } from 'react';
+import { useFavorites } from '@/contexts/FavoritesContext';
 
 
 interface Restaurant {
@@ -25,7 +26,7 @@ const Search = () => {
   const [searchResults, setSearchResults] = useState<Restaurant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  const { favoriteIds } = useFavorites()
 
   const handleSearch = async (query: string, type: string) => {
     setSearchParams({ query, type });
@@ -51,7 +52,15 @@ const Search = () => {
       
       const result = await response.json();
       const places = result.data.places || [];
-      setSearchResults(places);
+
+      const sortedPlaces = places.sort((a: { id: string; }, b: { id: string; }) => {
+        const aIsFavorite = favoriteIds.includes(a.id);
+        const bIsFavorite = favoriteIds.includes(b.id);
+        if (aIsFavorite === bIsFavorite) return 0;
+        return aIsFavorite ? -1 : 1;
+      });
+
+      setSearchResults(sortedPlaces);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setSearchResults([]);
