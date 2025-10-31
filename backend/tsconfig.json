@@ -1,6 +1,7 @@
 {
   "extends": "fastify-tsconfig",
   "compilerOptions": {
+    "lib": ["dom", "es2020"],
     "outDir": "dist",
     "sourceMap": true
   },

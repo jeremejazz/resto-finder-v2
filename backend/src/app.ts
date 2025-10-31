@@ -7,7 +7,7 @@ import cors from '@fastify/cors';
 export interface AppOptions extends FastifyServerOptions, Partial<AutoloadPluginOptions> {
 
 }
-// Pass --options via CLI arguments in command to enable these options.
+
 const options: AppOptions = {
 }
 
@@ -25,13 +25,11 @@ const app: FastifyPluginAsync<AppOptions> = async (
     global: false
   })
 
-  const staticPath = join(__dirname, '..', 'public')
+  const staticPath = process.env.PUBLIC_DIR ?? join(__dirname, '..', 'public')
   void fastify.register(staticPlugin, {
     root: staticPath,
     prefix: '/'
   })
-
-
   
   // Do not touch the following lines
 
