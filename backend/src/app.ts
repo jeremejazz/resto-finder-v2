@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import AutoLoad, { AutoloadPluginOptions } from '@fastify/autoload'
 import { FastifyPluginAsync, FastifyServerOptions } from 'fastify'
+import staticPlugin from '@fastify/static'
 import cors from '@fastify/cors';
 
 export interface AppOptions extends FastifyServerOptions, Partial<AutoloadPluginOptions> {
@@ -22,6 +23,12 @@ const app: FastifyPluginAsync<AppOptions> = async (
 
   await fastify.register(import('@fastify/rate-limit'), {
     global: false
+  })
+
+  const staticPath = join(__dirname, '..', 'public')
+  void fastify.register(staticPlugin, {
+    root: staticPath,
+    prefix: '/'
   })
 
 
