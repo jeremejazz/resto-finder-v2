@@ -1,0 +1,18 @@
+{
+  "name": "my-monorepo-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "My monorepo for frontend and backend",
+  "scripts": {
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "build:frontend": "pnpm --filter frontend build",
+    "build:backend": "pnpm --filter backend build:ts",
+    "build": "pnpm run build:frontend && pnpm run build:backend",
+    "start:backend": "pnpm --filter backend start"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "eslint": "^8.0.0"
+  }
+}
