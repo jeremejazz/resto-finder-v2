@@ -25,7 +25,7 @@ const app: FastifyPluginAsync<AppOptions> = async (
     global: false
   })
 
-  const staticPath = join(__dirname, '..', 'public')
+  const staticPath = process.env.PUBLIC_DIR ?? join(__dirname, '..', 'public')
   void fastify.register(staticPlugin, {
     root: staticPath,
     prefix: '/'
