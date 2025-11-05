@@ -16,10 +16,5 @@ const SelectTrigger = () => {
 }
 
 
-interface Framework {
-  label: string
-  value: string
-  icon: React.ReactNode
-}
 
 export default SelectTrigger;
