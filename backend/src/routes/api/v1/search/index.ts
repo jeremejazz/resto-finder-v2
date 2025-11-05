@@ -5,7 +5,7 @@ import searchController, {
 } from "../../../../modules/search/search.controller";
 
 const search: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-
+  const searchTypes = ["restaurant", "bakery", "coffee_shop", "ice_cream_shop", "juice_shop", "tea_house"];
   fastify.get<{ Querystring: SearchQuery }>(
     "/",
     {
@@ -19,7 +19,7 @@ const search: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
       schema: {
         querystring: {
           type: "object",
-          properties: { text: { type: "string", minLength: 5 }, type: { type: "string", enum: ["restaurant", "bakery", "coffee_shop"] } },
+          properties: { text: { type: "string", minLength: 5, maxLength: 5000 }, type: { type: "string", enum: searchTypes } },
           required: ["text", "type"],
         },
       },
