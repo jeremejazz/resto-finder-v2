@@ -37,7 +37,7 @@ const SearchBox = ({ onSearch }: SearchBoxProps) => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(searchFilter);
+  
     const query = searchRef.current?.value || "";
  
 
@@ -88,7 +88,7 @@ const SearchBox = ({ onSearch }: SearchBoxProps) => {
             collection={searchTypes}
             defaultValue={["restaurant"]}
             width="auto"
-            onSelect={({value}) => { setSearchFilter(value)}}
+            onSelect={({value}) => { setSearchFilter(value); }}
           >
             <Select.HiddenSelect />
             <Select.Control width="auto">
