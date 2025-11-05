@@ -41,7 +41,7 @@ const SearchBox = ({ onSearch }: SearchBoxProps) => {
     const query = searchRef.current?.value || "";
  
 
-    if (!query || query.length < 2) {
+    if (!query || query.length < 5) {
       return;
     }
 
