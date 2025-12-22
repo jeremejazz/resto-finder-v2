@@ -12,7 +12,6 @@ function App() {
         <a
           className="github-fork-ribbon left-top"
           href="https://github.com/jeremejazz/resto-finder-v2"
-          target="_blank"
           data-ribbon="Fork me on GitHub"
           title="Fork me on GitHub"
         >
