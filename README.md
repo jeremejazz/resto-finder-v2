@@ -4,7 +4,7 @@
 
 ## About 
 
-Application for searching restaurants using natural text
+A full-stack restaurant discovery platform featuring natural language search. This modern evolution of [Restaurant Finder](https://github.com/jeremejazz/restaurant-finder) migrates the backend to Fastify for high performance, integrates a new search service, and introduces a dedicated frontend interface.
 
 
 
