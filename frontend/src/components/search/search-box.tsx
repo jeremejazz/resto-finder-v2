@@ -61,7 +61,8 @@ const SearchBox = ({ onSearch }: SearchBoxProps) => {
     "Keto-friendly restaurants in Chicago with a nutrition menu",
     "Cheapest Michelin-starred restaurants in Hong Kong",
     "Affordable farm-to-table restaurants in Vermont",
-    "Coffee shops in Berlin that serve breakfast"
+    "Coffee shops in Berlin that serve breakfast",
+    "Affordable fast food in BF Homes, Paranaque City"
   ]);
 
   return (
@@ -95,6 +96,7 @@ const SearchBox = ({ onSearch }: SearchBoxProps) => {
             defaultValue={["restaurant"]}
             width="auto"
             onSelect={({value}) => { setSearchFilter(value); }}
+            colorPalette="yellow"
           >
             <Select.HiddenSelect />
             <Select.Control width="auto">
