@@ -9,6 +9,7 @@ import {
   Portal,
   Select,
   Stack,
+  Text
 } from "@chakra-ui/react";
 import { VscSparkleFilled } from "react-icons/vsc";
 import _ from "lodash";
@@ -56,16 +57,21 @@ const SearchBox = ({ onSearch }: SearchBoxProps) => {
     "Pizza places open late in New York",
     "Affordable mediterranean restaurant near Ayala Makati",
     "Best Mexican restaurants Singapore",
-    "Best takeout food near Washington"
+    "Best takeout food near Washington",
+    "Keto-friendly restaurants in Chicago with a nutrition menu",
+    "Cheapest Michelin-starred restaurants in Hong Kong",
+    "Affordable farm-to-table restaurants in Vermont",
+    "Coffee shops in Berlin that serve breakfast"
   ]);
 
   return (
     <Stack gap={6} width={{ base: "90%", md: "600px" }}>
       <Heading as="h1" textAlign="center" size="2xl">
-        Find the perfect spot
+        Find the perfect spot, instantly
       </Heading>
+      <Text >Powered by AI. Just tell us what you're craving — we'll handle the rest.</Text>
       <form onSubmit={handleSearch}>
-        <Flex gap={2} alignItems="center">
+        <Flex gap={2} alignItems="center" >
           <InputGroup 
             startElement={<VscSparkleFilled color="silver" />}
             flex="1"
