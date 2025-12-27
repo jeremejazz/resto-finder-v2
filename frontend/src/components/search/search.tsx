@@ -85,6 +85,7 @@ const Search = () => {
             />
           </Stack>
         </Container>
+        <Box mb="500" />
       </Stack>
     </>
   );
